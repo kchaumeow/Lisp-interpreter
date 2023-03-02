@@ -1,2 +1,2 @@
 # Lisp_interpreter
-This is and interpreter of programming language LISP written on python
+This is an interpreter of programming language LISP written on python
