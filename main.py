@@ -5,7 +5,7 @@ from lisp_interpreter import Interpreter
 
 if __name__ == "__main__":
     interpreter = Interpreter(BUILTIN_ENV, BUILTIN_MACRO)
-    with io.open('./code.lsp') as f:
+    with io.open('code.lisp') as f:
         code = ''.join(f.readlines())
         print(code)
         tokens = interpreter.tokenize(code)

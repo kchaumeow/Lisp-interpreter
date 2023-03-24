@@ -1,3 +1,5 @@
+import math
+
 from lisp_interpreter import List, Atom, Interpreter
 
 
@@ -40,7 +42,9 @@ BUILTIN_ENV = {
     '/': lambda e, a, b: int(a) // int(b),
     '>': lambda e, a, b: int(a) > int(b),
     '<': lambda e, a, b: int(a) < int(b),
-    '=': lambda e, a, b: int(a) == int(b),
+    '>=': lambda e, a, b: int(a) >= int(b),
+    '<=': lambda e, a, b: int(a) <= int(b),
+    '==': lambda e, a, b: int(a) == int(b),
     '&&': lambda e, a, b: a and b,
     '||': lambda e, a, b: a or b,
     '!': lambda e, a: not a,
