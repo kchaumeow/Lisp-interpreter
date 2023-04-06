@@ -1,5 +1,5 @@
 import math
-
+import tkinter as tk
 from lisp_interpreter import List, Atom, Interpreter
 
 
@@ -35,6 +35,16 @@ def builtin_while(interpreter: Interpreter, condition_expr, body):
         interpreter.execute_ast(body)
 
 
+def draw(e):
+    canvas_width = 640
+    canvas_height = 480
+    root = tk.Tk()
+    root.title('Mandelbrot')
+    canvas = tk.Canvas(root, width=canvas_width, height=canvas_height)
+    canvas.pack()
+    return root
+
+
 BUILTIN_ENV = {
     '+': lambda e, a, b: int(a) + int(b),
     '-': lambda e, a, b: int(a) - int(b),
@@ -53,6 +63,12 @@ BUILTIN_ENV = {
     'begin': lambda e, *a: a[-1],
     'print': lambda e, a: print(a),
     'prompt': lambda e: input(),
+    'draw': draw,
+    'abs': lambda e, a: abs(a),
+    'pow': lambda e, *a: pow(*a),
+    'len': lambda e, a: len(a),
+    'max': lambda e, *a: max(a),
+    'min': lambda e, *a: min(a),
 }
 
 BUILTIN_MACRO = {
