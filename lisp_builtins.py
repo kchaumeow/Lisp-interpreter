@@ -69,6 +69,7 @@ BUILTIN_ENV = {
     'len': lambda e, a: len(a),
     'max': lambda e, *a: max(a),
     'min': lambda e, *a: min(a),
+    'call': lambda e, root, func_name, *a: getattr(root, func_name)(*a)
 }
 
 BUILTIN_MACRO = {

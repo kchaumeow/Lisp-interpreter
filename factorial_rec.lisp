@@ -7,4 +7,5 @@
         )
     )
 
-(factorial 3))
+(factorial 3)(print y))
+
