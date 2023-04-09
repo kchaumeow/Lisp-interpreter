@@ -5,7 +5,7 @@ This is an interpreter of programming language LISP written on python.
 Here I built Mandelbrot fractal & bifurcation diagram on python.
 <br>
 <br>
-Code for Mandelbrot diagram was created with the help of ChatGPT:
+Code for Mandelbrot fractal was created with the help of ChatGPT:
 ```
 # Define the function to calculate the Mandelbrot set
 def mandelbrot(c):
