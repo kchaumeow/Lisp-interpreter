@@ -1,1 +1,15 @@
-(draw)
+(begin (define mandelbrot (lambda (c)(begin
+    (define z 0)
+    (define n 0)
+    (while (&& (<= (abs z) 2) (< n 255)) (begin
+        (define z (+ (* z z) c))
+        (define n (+ n 1))
+        )
+    )
+    (print n)
+    (if (== n 255) (define res "#FFFFFF") (define res 2) )
+                                (print res))
+                          )
+)
+    (mandelbrot 1)
+)

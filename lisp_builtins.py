@@ -27,6 +27,7 @@ def builtin_if(interpreter: Interpreter, condition_expr, *body):
     if condition:
         return interpreter.execute_ast(body[0])
     elif len(body) > 1:
+        print(body)
         return interpreter.execute_ast(body[1])
 
 

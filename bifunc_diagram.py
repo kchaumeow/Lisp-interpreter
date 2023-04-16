@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 x3 = 0.01
 s = []
 c = []
-step = 0.01
+step = 0.0001
 
 for j in range(200):
     x0 = x3

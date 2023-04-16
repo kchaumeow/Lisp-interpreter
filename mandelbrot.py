@@ -1,6 +1,8 @@
 import tkinter as tk
 
 # Define the function to calculate the Mandelbrot set
+
+
 def mandelbrot(c):
     z = 0
     n = 0

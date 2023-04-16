@@ -19,6 +19,7 @@ class Atom(Executable):
 
     def format(self, indent_level=0):
         return "\t" * indent_level + self.__value
+
     @property
     def value(self):
         return self.__value
@@ -30,8 +31,10 @@ class Atom(Executable):
 class List(Executable):
     def __init__(self, children: list[any]):
         self.__children = children
+
     def get_children(self):
         return self.__children
+
     def get_head(self):
         if len(self.__children) > 0:
             return self.__children[0]
@@ -53,16 +56,17 @@ class List(Executable):
             return fn(interpreter.env, *[interpreter.execute_ast(i) for i in tail])
         return fn
 
-    def format(self, indent_level=0):
+    def format_programm(self, indent_level=0):
         result = "\t" * indent_level + '('+self.get_head().value
         for child in self.__children[1:]:
             if isinstance(child, Atom):
-                result +=  " " + child.value
-            else: result += '\n' + child.format(indent_level + 1)
+                result += " " + child.value
+            else: result += '\n' + child.format_programm(indent_level + 1)
         if not isinstance(self.__children[-1], Atom):
             result += '\n' + "\t" * indent_level
         result += ')'
         return result
+
     @property
     def children(self):
         return self.__children
