@@ -32,5 +32,5 @@
 				) res)
 		)
 	)
-	(draw mandelbrot)
+	(draw_mandelbrot mandelbrot)
 )
