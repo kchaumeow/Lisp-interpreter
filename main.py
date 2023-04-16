@@ -12,10 +12,10 @@ if __name__ == "__main__":
     interpreter = Interpreter(BUILTIN_ENV, BUILTIN_MACRO)
 
     with io.open(filename) as f:
-        code = ''.join(filter(lambda s: '#' not in s, f.readlines()))
+        code = ''.join(filter(lambda s: s.strip()[0] != "#", f.readlines()))
         tokens = interpreter.tokenize(code)
         ast = interpreter.build_ast(tokens)
-    print(ast)
+
     if should_format:
         with io.open(filename, 'w') as f:
             f.write(ast.format_programm())

@@ -1,4 +1,4 @@
-import math
+import matplotlib.pyplot as plt
 import tkinter as tk
 from lisp_interpreter import List, Atom, Interpreter
 
@@ -27,7 +27,6 @@ def builtin_if(interpreter: Interpreter, condition_expr, *body):
     if condition:
         return interpreter.execute_ast(body[0])
     elif len(body) > 1:
-        print(body)
         return interpreter.execute_ast(body[1])
 
 
@@ -36,22 +35,22 @@ def builtin_while(interpreter: Interpreter, condition_expr, body):
         interpreter.execute_ast(body)
 
 
-def draw(e):
-    def mandelbrot(c):
-        z = 0
-        n = 0
-        while abs(z) <= 2 and n < 255:
-            z = z * z + c
-            n += 1
-        if n == 255:
-            return "#FFFFFF"  # black if in the set
-        else:
-            return "#" + "{0:02x}{1:02x}{2:02x}".format(n, n, n)  # gray scale based on iteration count
+def draw(e, mandelbrot):
+    # def mandelbrot(c):
+    #     z = 0
+    #     n = 0
+    #     while abs(z) <= 2 and n < 255:
+    #         z = z * z + c
+    #         n += 1
+    #     if n == 255:
+    #         return "#FFFFFF"  # black if in the set
+    #     else:
+    #         return "#" + "{0:02x}{1:02x}{2:02x}".format(n, n, n)  # gray scale based on iteration count
 
     # Define the parameters of the Mandelbrot set
 
     xmin, xmax, ymin, ymax = -2.0, 1.0, -1.5, 1.5
-    width, height = 500, 500
+    width, height = 200, 200
 
     # Create the Tkinter window and canvas
     window = tk.Tk()
@@ -63,7 +62,7 @@ def draw(e):
     for x in range(width):
         for y in range(height):
             c = complex(xmin + (xmax - xmin) * x / width, ymin + (ymax - ymin) * y / height)
-            color = mandelbrot(c)
+            color = mandelbrot(e, c)
             canvas.create_line(x, y, x + 1, y + 1, fill=color)
 
     # Start the Tkinter event loop
@@ -78,10 +77,10 @@ def draw(e):
 
 
 BUILTIN_ENV = {
-    '+': lambda e, a, b: int(a) + int(b),
-    '-': lambda e, a, b: int(a) - int(b),
-    '*': lambda e, a, b: int(a) * int(b),
-    '/': lambda e, a, b: int(a) // int(b),
+    '+': lambda e, a, b: a + b,
+    '-': lambda e, a, b: a - b,
+    '*': lambda e, a, b: a * b,
+    '/': lambda e, a, b: a // b,
     '>': lambda e, a, b: int(a) > int(b),
     '<': lambda e, a, b: int(a) < int(b),
     '>=': lambda e, a, b: int(a) >= int(b),
@@ -101,12 +100,15 @@ BUILTIN_ENV = {
     'len': lambda e, a: len(a),
     'max': lambda e, *a: max(a),
     'min': lambda e, *a: min(a),
-    'call': lambda e, root, func_name, *a: getattr(root, func_name)(*a)
+    'call': lambda e, root, func_name, *a: getattr(root, func_name)(*a),
+    'list': lambda e, *a: [*a],
+    'plt.plot': lambda e, a, b, c, d: plt.plot(a, b, str(c), ms=d),
+    'plt.show': lambda e: plt.show()
 }
 
 BUILTIN_MACRO = {
     'lambda': internal_lambda,
     'if': builtin_if,
     'while': builtin_while,
-    'define': builtin_define
+    'define': builtin_define,
 }
