@@ -48,4 +48,43 @@ Result:
 <br>
 ![image](https://user-images.githubusercontent.com/71407757/230757636-25f5bbec-a964-4074-ac1c-62bc9866dadb.png)
 <br>
-Soon these calculations will be written on Lisp...
+Instructions that you can use in my Interpreter
+```
+BUILTIN_ENV = {
+    '+': lambda e, a, b: a + b,
+    '-': lambda e, a, b: a - b,
+    '*': lambda e, a, b: a * b,
+    '/': lambda e, a, b: a // b,
+    '>': lambda e, a, b: int(a) > int(b),
+    '<': lambda e, a, b: int(a) < int(b),
+    '>=': lambda e, a, b: int(a) >= int(b),
+    '<=': lambda e, a, b: int(a) <= int(b),
+    '==': lambda e, a, b: int(a) == int(b),
+    '&&': lambda e, a, b: a and b,
+    '||': lambda e, a, b: a or b,
+    '!': lambda e, a: not a,
+    'true': lambda e: True,
+    'false': lambda e: False,
+    'begin': lambda e, *a: a[-1],
+    'print': lambda e, *a: print(*a),
+    'prompt': lambda e: input(),
+    'draw_mandelbrot': draw_mandelbrot,
+    'abs': lambda e, a: abs(a),
+    'pow': lambda e, *a: pow(*a),
+    'len': lambda e, a: len(a),
+    'max': lambda e, *a: max(a),
+    'min': lambda e, *a: min(a),
+    'call': lambda e, root, func_name, *a: getattr(root, func_name)(*a),
+    'list': lambda e, *a: [*a],
+    'draw_bifur': draw_bifur,
+    'typeof': lambda e, a: type(a),
+    'float': lambda e, a: float(a),
+}
+
+BUILTIN_MACRO = {
+    'lambda': internal_lambda,
+    'if': builtin_if,
+    'while': builtin_while,
+    'define': builtin_define,
+}
+```

@@ -40,7 +40,7 @@ def draw_mandelbrot(e, mandelbrot):
     # Define the parameters of the Mandelbrot set
 
     xmin, xmax, ymin, ymax = -2.0, 1.0, -1.5, 1.5
-    width, height = 200, 200
+    width, height = 300, 300
 
     # Create the Tkinter window and canvas
     window = tk.Tk()

@@ -32,5 +32,6 @@
 				) res)
 		)
 	)
+	(print In 1.2 minutes I will write you a Mandelbrot fractal)
 	(draw_mandelbrot mandelbrot)
 )

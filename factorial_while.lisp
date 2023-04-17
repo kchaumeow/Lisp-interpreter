@@ -19,5 +19,7 @@
 				) r)
 		)
 	)
-	(factorial 5)
+	(print Enter number to get a "factorial" of)
+	(define x (float (prompt)))
+	(factorial x)
 )
