@@ -101,3 +101,9 @@ class Interpreter:
         if env is not None:
             return Interpreter(env, self.macro).execute_ast(ast)
         return ast.execute(self)
+
+    def run_code(self, code, **kvargs):
+        tokens = self.tokenize(code)
+        ast = self.build_ast(tokens)
+        self.env = {**self.env, **kvargs}
+        return self.execute_ast(ast)

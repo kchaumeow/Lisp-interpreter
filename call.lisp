@@ -1,6 +1,11 @@
 (begin
-    (define n 1)
-    (define z 2)
-    (define List (list n z))
-    (call List append n)
-    List)
+    (define counter 0)
+    (while
+        (< counter n)
+        (begin
+            (define counter (+ counter 1))
+            (define x (* x 2))
+        )
+    )
+    x
+)
